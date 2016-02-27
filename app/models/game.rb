@@ -13,6 +13,8 @@ class Game
   end
 
   def add_player(parsed_line)
-    @player << Player.new(name: parsed_line[1]) if new_player? parsed_line
+    player_name = parsed_line[1]
+    player_key = parsed_line[0]
+    @players[player_key] = Player.new(player_name) if new_player? parsed_line
   end
 end
