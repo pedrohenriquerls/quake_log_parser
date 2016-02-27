@@ -24,10 +24,12 @@ describe LogParser do
       expect(game.players_name).to match_array ['Isgalamido', 'Mocinha']
     end
 
-    # it 'should equal json' do
-    #   json_game = "{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}"
-    #   expect(game.to_json).to eq json_game
-    # end
+    it 'should have kill by means "MOD_TRIGGER_HURT": 7, "MOD_ROCKET_SPLASH": 3 and "MOD_FALLING": 1 ' do
+      kill_by_means = game.kills_by_means
+      expect(kill_by_means['MOD_TRIGGER_HURT']).to eq 7
+      expect(kill_by_means['MOD_ROCKET_SPLASH']).to eq 3
+      expect(kill_by_means['MOD_FALLING']).to eq 1
+    end
 
     it 'should equal json' do
       json = "{\"game_1\":{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}}"

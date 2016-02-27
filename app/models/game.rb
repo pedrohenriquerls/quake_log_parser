@@ -1,9 +1,12 @@
 class Game
+  include Kill
+
   WORLD_KILL = 1022
-  attr_accessor :players, :total_kills, :rank
+  attr_accessor :players, :total_kills, :rank, :kills_by_means
 
   def initialize
     @players = {}
+    @kills_by_means = Hash.new 0
     @rank = []
     @total_kills = 0
   end
@@ -24,6 +27,8 @@ class Game
 
   def update_kills(parsed_line)
     @total_kills += 1
+
+    @kills_by_means[MEANS[parsed_line[2]]] += 1
 
     killer = @players[parsed_line[0]]
     killed = @players[parsed_line[1]]
