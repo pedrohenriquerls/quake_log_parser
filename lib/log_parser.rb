@@ -10,6 +10,16 @@ class LogParser
     read_file
   end
 
+  def parse_to_json
+    games = parse
+    result = {}
+    games.each_with_index do |game, index|
+      result["game_#{index+1}"] = game.to_hash
+    end
+
+    result.to_json
+  end
+
   private
     def new_game?(line)
       line=~/^\s{0,2}\d{1,3}:\d{2} InitGame:/ ? true : false

@@ -3,9 +3,11 @@ require 'log_parser'
 
 describe LogParser do
   describe 'parse log with one game' do
-    let(:game) do
+    let(:parser) do
       file = fixture 'first_game.log'
-      parser = LogParser.new file
+      LogParser.new file
+    end
+    let(:game) do
       parser.parse.first
     end
 
@@ -22,9 +24,14 @@ describe LogParser do
       expect(game.players_name).to match_array ['Isgalamido', 'Mocinha']
     end
 
-    it 'should have players called "Isgalamido" and "Mocinha"' do
-      json_game = "{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}"
-      expect(game.to_json).to eq json_game
+    # it 'should equal json' do
+    #   json_game = "{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}"
+    #   expect(game.to_json).to eq json_game
+    # end
+
+    it 'should equal json' do
+      json = "{\"game_1\":{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}}"
+      expect(parser.parse_to_json).to eq json
     end
   end
 end
