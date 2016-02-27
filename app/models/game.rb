@@ -40,6 +40,19 @@ class Game
     end
   end
 
+  def to_json
+    game_hash = {
+        total_kills: @total_kills,
+        players: players_name,
+        kills: {}
+    }
+
+    players.each do |key, player|
+      game_hash[:kills][player.name] = player.kills
+    end
+    game_hash.to_json
+  end
+
   def players_name
     @players.collect do |id, player|
       player.name

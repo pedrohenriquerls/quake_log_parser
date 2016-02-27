@@ -21,5 +21,10 @@ describe LogParser do
     it 'should have players called "Isgalamido" and "Mocinha"' do
       expect(game.players_name).to match_array ['Isgalamido', 'Mocinha']
     end
+
+    it 'should have players called "Isgalamido" and "Mocinha"' do
+      json_game = "{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}"
+      expect(game.to_json).to eq json_game
+    end
   end
 end
