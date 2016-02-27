@@ -36,4 +36,16 @@ describe LogParser do
       expect(parser.parse_to_json).to eq json
     end
   end
+
+  describe 'parse log with many games' do
+    let(:parser) do
+      file = fixture 'games.log'
+      LogParser.new file
+    end
+
+    it 'should have 21 games' do
+      games = parser.parse
+      expect(games.length).to eq 21
+    end
+  end
 end
