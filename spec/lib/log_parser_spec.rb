@@ -32,7 +32,7 @@ describe LogParser do
     end
 
     it 'should equal json' do
-      json = "{\"game_1\":{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}}"
+      json = "{\"game_1\":{\"total_kills\":11,\"players\":[\"Isgalamido\",\"Mocinha\"],\"kills_by_means\":{\"MOD_TRIGGER_HURT\":7,\"MOD_ROCKET_SPLASH\":3,\"MOD_FALLING\":1},\"kills\":{\"Isgalamido\":-7,\"Mocinha\":0}}}"
       expect(parser.parse_to_json).to eq json
     end
   end

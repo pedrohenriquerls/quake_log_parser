@@ -49,6 +49,7 @@ class Game
     game_hash = {
         total_kills: @total_kills,
         players: players_name,
+        kills_by_means: @kills_by_means,
         kills: {}
     }
 
