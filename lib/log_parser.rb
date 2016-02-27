@@ -23,14 +23,24 @@ class LogParser
       [line[/\d{1,2} n\\/].gsub(/ n\\/, '').to_i ,line[/n\\.+\\t\\\d/].gsub(/^n\\|\\t\\\d/, '')]
     end
 
+    def kill?(line)
+      line=~/^ \d{1,3}:\d{2} Kill:/ ? true : false
+    end
+
+    def get_kill_report(line)
+      parsed_line = line[/Kill: \d{1,4}\s\d{1,2}\s\d{1,2}/].gsub(/^Kill: /, '').split(' ').map{ |i| i.to_i }
+      parsed_line << line[/\d{1,3}:\d{2}/].gsub(/^Kill: /, '')
+    end
+
     def read_file
       games = []
       @file.each_line do |line|
-        puts line
         if new_game? line
           games << Game.new
         elsif player_changed? line
           games.last.add_player get_player(line)
+        elsif kill? line
+          games.last.update_kills get_kill_report(line)
         end
       end
       games

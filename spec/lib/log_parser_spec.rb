@@ -3,15 +3,23 @@ require 'log_parser'
 
 describe LogParser do
   describe 'parse log with one game' do
-    let!(:parser) do
+    let(:game) do
       file = fixture 'first_game.log'
-      LogParser.new file
+      parser = LogParser.new file
+      parser.parse.first
     end
 
     it 'should have one game and two players' do
-      games = parser.parse
-      expect(games.length).to eq 1
-      expect(games.first.players.length).to eq 2
+      expect(game.nil?).to be false
+      expect(game.players.length).to eq 2
+    end
+
+    it 'should have 11 kills' do
+      expect(game.total_kills).to eq 11
+    end
+
+    it 'should have players called "Isgalamildo" and "Mocinha"' do
+      expect(game.players_name).to match_array ['Isgalamildo', 'Mocinha']
     end
   end
 end
