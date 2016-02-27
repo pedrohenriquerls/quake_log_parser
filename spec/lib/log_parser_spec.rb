@@ -18,8 +18,8 @@ describe LogParser do
       expect(game.total_kills).to eq 11
     end
 
-    it 'should have players called "Isgalamildo" and "Mocinha"' do
-      expect(game.players_name).to match_array ['Isgalamildo', 'Mocinha']
+    it 'should have players called "Isgalamido" and "Mocinha"' do
+      expect(game.players_name).to match_array ['Isgalamido', 'Mocinha']
     end
   end
 end

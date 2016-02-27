@@ -12,10 +12,14 @@ class Game
     @players[parsed_line[0]].nil?
   end
 
-  def add_player(parsed_line)
+  def add_or_update_player(parsed_line)
     player_name = parsed_line[1]
     player_key = parsed_line[0]
-    @players[player_key] = Player.new(player_name) if new_player? parsed_line
+    if new_player? parsed_line
+      @players[player_key] = Player.new(player_name)
+    else
+      @players[player_key].name = player_name
+    end
   end
 
   def update_kills(parsed_line)

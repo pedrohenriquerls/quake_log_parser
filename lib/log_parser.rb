@@ -38,7 +38,7 @@ class LogParser
         if new_game? line
           games << Game.new
         elsif player_changed? line
-          games.last.add_player get_player(line)
+          games.last.add_or_update_player get_player(line)
         elsif kill? line
           games.last.update_kills get_kill_report(line)
         end
