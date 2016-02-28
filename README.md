@@ -18,5 +18,5 @@ Its the game log have a pattern and some codes, to make simple build anything to
 ```
 20:54 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT
 ```
-this means, the player 1022 kill the player 2 with the way 22, we know the max clients on a quake server is 16, so the player id 1022 is reserved to <world>. With this you dont need parse all the string to know what happened with players.
+this means, the player 1022 killed the player 2 with the way 22, we know the max clients on a quake server is 16, so the player id 1022 is reserved to <world>. With this you dont need parse all the string to know what happened with players.
 
